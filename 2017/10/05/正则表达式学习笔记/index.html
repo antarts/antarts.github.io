@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>正则表达式学习笔记 | Antarts成长记录</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="正则表达式,javascript,限定符,字符元,转义符,运算符," />
+  
+
+  <meta name="description" content="正则表达式? 通配符匹配文件名中的单个字符，前面字符出现单个或多次； * 通配符匹配零个或多个字符； ^ 为匹配输入字符成串的开始位置； [0-9]+ 匹配多个数字，[0-9] 匹配单个数字，+  匹配一个或者多个； abs$ 匹配字母 abc 并以 abc 结尾，$ 为匹配输入字符串的结束位置； 可以实现的工作：  测试字符串内的模式。如，数据验证。 替换文本。识别特定文本，可以删除或替换。 基">
+<meta name="keywords" content="正则表达式,javascript,限定符,字符元,转义符,运算符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习笔记">
+<meta property="og:url" content="http://iwhyer.me/2017/10/05/正则表达式学习笔记/index.html">
+<meta property="og:site_name" content="Antarts成长记录">
+<meta property="og:description" content="正则表达式? 通配符匹配文件名中的单个字符，前面字符出现单个或多次； * 通配符匹配零个或多个字符； ^ 为匹配输入字符成串的开始位置； [0-9]+ 匹配多个数字，[0-9] 匹配单个数字，+  匹配一个或者多个； abs$ 匹配字母 abc 并以 abc 结尾，$ 为匹配输入字符串的结束位置； 可以实现的工作：  测试字符串内的模式。如，数据验证。 替换文本。识别特定文本，可以删除或替换。 基">
+<meta property="og:updated_time" content="2017-10-05T17:26:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式学习笔记">
+<meta name="twitter:description" content="正则表达式? 通配符匹配文件名中的单个字符，前面字符出现单个或多次； * 通配符匹配零个或多个字符； ^ 为匹配输入字符成串的开始位置； [0-9]+ 匹配多个数字，[0-9] 匹配单个数字，+  匹配一个或者多个； abs$ 匹配字母 abc 并以 abc 结尾，$ 为匹配输入字符串的结束位置； 可以实现的工作：  测试字符串内的模式。如，数据验证。 替换文本。识别特定文本，可以删除或替换。 基">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通字符"><span class="toc-text">普通字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非打印字符"><span class="toc-text">非打印字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊字符"><span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限定符"><span class="toc-text">限定符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位符"><span class="toc-text">定位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择"><span class="toc-text">选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方向作用"><span class="toc-text">方向作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符元"><span class="toc-text">字符元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符优先级"><span class="toc-text">运算符优先级</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-正则表达式学习笔记" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">正则表达式学习笔记</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.10.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Antarts</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.iwhyer.me/2017/10/05/正则表达式学习笔记/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p><code>?</code> 通配符匹配文件名中的单个字符，前面字符出现单个或多次；</p>
+<p><code>*</code> 通配符匹配零个或多个字符；</p>
+<p><code>^</code> 为匹配输入字符成串的开始位置；</p>
+<p><code>[0-9]+</code> 匹配多个数字，<code>[0-9]</code> 匹配单个数字，<code>+</code>  匹配一个或者多个；</p>
+<p><code>abs$</code> 匹配字母 <code>abc</code> 并以 <code>abc</code> 结尾，<code>$</code> 为匹配输入字符串的结束位置；</p>
+<p>可以实现的工作：</p>
+<ol>
+<li>测试字符串内的模式。如，数据验证。</li>
+<li>替换文本。识别特定文本，可以删除或替换。</li>
+<li>基于模式匹配从字符串中提取子字符串。</li>
+</ol>
+<h3 id="普通字符"><a href="#普通字符" class="headerlink" title="普通字符"></a>普通字符</h3><p>这包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。</p>
+<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><p><code>\cx</code> 匹配由x指明的控制字符。</p>
+<p><code>\f</code> 匹配一个换页符。</p>
+<p><code>\n</code> 匹配一个换行符。</p>
+<p><code>\r</code> 匹配一个回车符。</p>
+<p><code>\s</code> 匹配任何空白符，包括空格、制表符、换页符等等。</p>
+<p><code>\S</code> 匹配任何非空白字符。</p>
+<p><code>\t</code> 匹配一个制表符。</p>
+<p><code>\v</code> 匹配一个垂直制表符。</p>
+<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><p><code>$</code> 匹配输入字符串的结尾位置。<code>\$</code></p>
+<p><code>()</code> 标记一个子表达式的开始和结束位置。<code>\(\)</code></p>
+<p><code>*</code> 匹配前面的子表达式零次或多次。<code>\*</code></p>
+<p><code>+</code> 匹配前面的子表达式一次或多次。<code>\+</code></p>
+<p><code>.</code> 匹配换行符\n之外的任何单字符。<code>\.</code></p>
+<p><code>[</code> 标记一个中括号表达式的开始。<code>\[</code></p>
+<p><code>?</code> 匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。<code>\?</code></p>
+<p><code>\</code> 将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如，<code>&#39;n&#39;</code>匹配字符<code>&#39;n&#39;</code>；序列<code>&#39;\\&#39;</code>匹配<code>&quot;\&quot;</code>；而<code>\(</code>则匹配<code>&quot;(&quot;</code>。</p>
+<p><code>^</code> 匹配输入字符串的开始位置，除非在方括号表达式中使用，此时它表示不接受该字符集合。<code>\^</code></p>
+<p><code>{</code> 标记限定符表达式的开始。<code>\{</code></p>
+<p><code>|</code> 指明两项之间的一个选择。<code>\|</code></p>
+<h3 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h3><p>有 <code>*</code> 或 <code>+</code> 或 <code>?</code> 或 <code>{n}</code> 或 <code>{n,}</code> 或 <code>{n,m}</code> 共6种。</p>
+<p> <code>*</code> 匹配前面的子表达式零次或多次。</p>
+<p><code>+</code> 匹配前面的子表达式一次或多次。</p>
+<p><code>?</code> 匹配前面的子表达式零次或一次。</p>
+<p><code>{n}</code> n是一个非负整数。匹配确定的n次。例如，’o{2}’不能匹配”Bob”中的’o’，可以匹配”food”中的两个’o’。</p>
+<p><code>{n,}</code> n是一个非负整数。至少匹配n次。例如，’o{2}’不能匹配”Bob”中的’o’，可以匹配”fooood”中所有的’o’，’o{1,}’等价于’o+’。’o{0,}’则等价于’o*’。</p>
+<p><code>{n,m}</code> m和n均为非负整数，其中n&lt;=m。最少匹配n次且最多匹配m次。例如，”o{1,3}”将匹配”fooooood”中的前三个’o’。’o{0,1}’等价于’o?’。请注意在逗号和两个数之间不能有空格。</p>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p><code>^</code> 匹配输入字符串的开始位置。</p>
+<p><code>$</code> 匹配输入字符串结尾的位置。</p>
+<p><code>\b</code> 匹配一个边界，即字与空格间的位置。</p>
+<p><code>\B</code> 非字边界匹配。</p>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>用圆括号将所有选择项包括起来，相邻的选择项之间用<code>|</code>分隔。但是圆括号会有一个副作用，是相关的匹配会被缓存，此时可用<code>?:</code>放在第一个选项来消除这种副作用。</p>
+<p>其中 <code>?:</code> 是非捕获元之一，还有两个非捕获元是 <code>?=</code> 和 <code>?!</code> ，这两个还有更多的含义，前者为正向预查，在任何开始匹配圆括号内的正则表达式模式的位置来匹配搜索字符串，后者为负向预查，在任何开始不匹配该正则表达式模式的位置来匹配搜索字符串。</p>
+<h3 id="方向作用"><a href="#方向作用" class="headerlink" title="方向作用"></a>方向作用</h3><p>正则表达式后面的全局标记 g 指定将该表达式应用到输入字符串中能够查找到的尽可能多的匹配。</p>
+<p>表达式的结尾处的不区分大小写 i 标记指定不区分大小写。</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var str = &quot;http://www.runoob.com:80/html/html-tutorial.html&quot;;</div><div class="line">var patt1 = /(\w+):\/\/([^/:]+)(:\d*)?([^# ]*)/;</div><div class="line">arr = str.match(patt1);</div><div class="line">for (var i = 0; i &lt; arr.length ; i++) &#123;</div><div class="line">    document.write(arr[i]);</div><div class="line">    document.write(&quot;&lt;br&gt;&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第一个括号子表达式捕获 Web 地址的协议部分。该子表达式匹配在冒号和两个正斜杠前面的任何单词。</p>
+<p>第二个括号子表达式捕获地址的域地址部分。子表达式匹配 / 和 : 之外的一个或多个字符。</p>
+<p>第三个括号子表达式捕获端口号（如果指定了的话）。该子表达式匹配冒号后面的零个或多个数字。只能重复一次该子表达式。</p>
+<p>最后，第四个括号子表达式捕获 Web 地址指定的路径和 / 或页信息。该子表达式能匹配不包括 # 或空格字符的任何字符序列。</p>
+<p>将正则表达式应用到上面的 URI，各子匹配项包含下面的内容：</p>
+<ul>
+<li>第一个括号子表达式包含”http”</li>
+<li>第二个括号子表达式包含”www.runoob.com”</li>
+<li>第三个括号子表达式包含”:80”</li>
+<li>第四个括号子表达式包含”/html/html-tutorial.html”</li>
+</ul>
+<h3 id="字符元"><a href="#字符元" class="headerlink" title="字符元"></a>字符元</h3><p><code>(pattern)</code> 匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 ‘(‘ 或 ‘)‘。</p>
+<p><code>(?:pattern)</code> 匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 “或” 字符 (|) 来组合一个模式的各个部分是很有用。例如， ‘industr(?:y|ies) 就是一个比 ‘industry|industries’ 更简略的表达式。</p>
+<p><code>(?=pattern)</code> 正向预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，’Windows (?=95|98|NT|2000)’ 能匹配 “Windows 2000” 中的 “Windows” ，但不能匹配 “Windows 3.1” 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</p>
+<p><code>(?!pattern)</code> 负向预查，在任何不匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如’Windows (?!95|98|NT|2000)’ 能匹配 “Windows 3.1” 中的 “Windows”，但不能匹配 “Windows 2000” 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</p>
+<p><code>x|y</code> 匹配 x 或 y。例如，’z|food’ 能匹配 “z” 或 “food”。’(z|f)ood’ 则匹配 “zood” 或 “food”。</p>
+<p><code>[xyz]</code> 字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。</p>
+<p><code>[^xyz]</code> 负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’、’l’、’i’、’n’。</p>
+<p><code>[a-z]</code> 字符范围。匹配指定范围内的任意字符。例如，’[a-z]’ 可以匹配 ‘a’ 到 ‘z’ 范围内的任意小写字母字符。</p>
+<p><code>[^a-z]</code> 负值字符范围。匹配任何不在指定范围内的任意字符。例如，’[^a-z]’ 可以匹配任何不在 ‘a’ 到 ‘z’ 范围内的任意字符。</p>
+<p><code>\b</code> 匹配一个单词边界，也就是指单词和空格间的位置。例如， ‘er\b’ 可以匹配”never” 中的 ‘er’，但不能匹配 “verb” 中的 ‘er’。</p>
+<p><code>\B</code> 匹配非单词边界。’er\B’ 能匹配 “verb” 中的 ‘er’，但不能匹配 “never” 中的 ‘er’。</p>
+<p><code>\cx</code> 匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。</p>
+<p><code>\d</code> 匹配一个数字字符。等价于 [0-9]。</p>
+<p><code>\D</code> 匹配一个非数字字符。等价于 [^0-9]。</p>
+<p><code>\f</code> 匹配一个换页符。等价于 \x0c 和 \cL。</p>
+<p><code>\n</code> 匹配一个换行符。等价于 \x0a 和 \cJ。</p>
+<p><code>\r</code> 匹配一个回车符。等价于 \x0d 和 \cM。</p>
+<p><code>\s</code> 匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</p>
+<p><code>\S</code> 匹配任何非空白字符。等价于 <code>[^ \f\n\r\t\v]</code>。</p>
+<p><code>\t</code> 匹配一个制表符。等价于 \x09 和 \cI。</p>
+<p><code>\v</code> 匹配一个垂直制表符。等价于 \x0b 和 \cK。</p>
+<p><code>\w</code> 匹配包括下划线的任何单词字符。等价于’[A-Za-z0-9_]’。</p>
+<p><code>\W</code> 匹配任何非单词字符。等价于<code>&#39;[^A-Za-z0-9_]&#39;</code>。</p>
+<p><code>\xn</code> 匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ‘\x04’ &amp; “1”。正则表达式中可以使用 ASCII 编码。</p>
+<p><code>\num</code> 匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，’(.)\1’ 匹配两个连续的相同字符。</p>
+<p><code>\n</code> 标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。</p>
+<p><code>\nm</code> 标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。</p>
+<p><code>\nml</code> 如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。</p>
+<p><code>\un</code> 匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</p>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><p>正则表达式从左到右进行计算，并遵循优先级顺序。</p>
+<ol>
+<li>转义符：<code>\</code></li>
+<li>圆括号和方括号：<code>(),(?:),(?=),[]</code></li>
+<li>限定符：<code>*,+,?,{n},{n,},{n,m}</code></li>
+<li>定位点和序列（位置和顺序）：<code>^,$,\任何元字符、任何字符</code></li>
+<li>替换，“或”操作：<code>|</code> 。 （字符具有高于替换运算符的优先级，使得”m|food”匹配”m”或”food”。若要匹配”mood”或”food”，请使用括号创建子表达式，从而产生”(m|f)ood”。）</li>
+</ol>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持Antarts</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/ant-wechat.jpg" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/ant-alipay.jpg" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/10/03/Blog更动 & 测试 & hexo使用说明/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/10/06/First Personal Note/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'Antarts';
+    
+    var disqus_url = 'http://iwhyer.me/2017/10/05/正则表达式学习笔记/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//Antarts.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
