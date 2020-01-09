@@ -2,8 +2,6 @@
 
 date: 2017-10-03 21:07:37
 
-[TOC]
-
 这是测试贴，之前用windows部署hexo，现在投向Mac和Ubuntu，所以hexo也只能跟着转移。
 
 ## Mathjax
