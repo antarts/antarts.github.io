@@ -1,9 +1,6 @@
----
-title: Blog更动 & 测试 & hexo使用说明
+## Blog更动 & 测试 & hexo使用说明
+
 date: 2017-10-03 21:07:37
-tags: [hexo,blog,测试,更动]
-categories: 测试
----
 
 这是测试贴，之前用windows部署hexo，现在投向Mac和Ubuntu，所以hexo也只能跟着转移。
 
