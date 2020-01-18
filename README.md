@@ -33,3 +33,4 @@
 
 #### 2020
 - [**局域网搭建JupyterHub环境**](2020/局域网搭建JupyterHub环境.md)
+- [**Ubuntu19.04系统更新Nvidia显卡驱动启动黑屏**](2020/Ubuntu19.04系统更新Nvidia显卡驱动启动黑屏.md)
