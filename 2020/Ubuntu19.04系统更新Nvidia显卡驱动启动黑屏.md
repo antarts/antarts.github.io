@@ -34,3 +34,13 @@ sudo apt-get autoremove --purge nvidia-*
 ```
 sudo reboot
 ```
+
+6. 查看可可安装显卡驱动
+```
+ubuntu-drivers list
+```
+
+7. 安装显卡驱动
+ ```
+ sudo apt-get install nvidia-*
+ ```
