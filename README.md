@@ -36,3 +36,4 @@
 - [**Ubuntu19.04系统更新Nvidia显卡驱动启动黑屏**](2020/Ubuntu19.04系统更新Nvidia显卡驱动启动黑屏.md)
 - [**Ubuntu19.10系统无法进入桌面如何启动shell**](2020/Ubuntu19.10系统无法进入桌面如何启动shell.md)
 - [**项目中.gitignore文件不工作**](2020/项目中.gitignore文件不工作.md)
+- [**Android手机分享屏幕到Ubuntu电脑**](2020/Android手机分享屏幕到Ubuntu电脑.md)
