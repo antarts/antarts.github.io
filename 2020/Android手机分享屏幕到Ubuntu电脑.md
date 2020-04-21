@@ -45,7 +45,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 在文件中输入:
 
->SUBSYSTEM=="usb", SYSFS{idVendor}=="04e8", MODE="0666"
+>SUBSYSTEM=="usb", SYSFS{idVendor}=="22d9", MODE="0666"
 
 保存后修改文件权限
 
