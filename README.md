@@ -37,3 +37,4 @@
 - [**Ubuntu19.10系统无法进入桌面如何启动shell**](2020/Ubuntu19.10系统无法进入桌面如何启动shell.md)
 - [**项目中.gitignore文件不工作**](2020/项目中.gitignore文件不工作.md)
 - [**Android手机分享屏幕到Ubuntu电脑**](2020/Android手机分享屏幕到Ubuntu电脑.md)
+- [**Docker 部署 parse-server & parse-dashboard**](2020/Docker部署parse-server&parse-dashboard.md)
